@@ -7,6 +7,8 @@ path = Path(__file__).resolve().parent / 'weread.txt'
 
 with open(path, 'r', encoding='utf-8') as file:
     data = file.read()
+    data = re.sub(r'\n\s*\n>>', '\n\n- ', data)
+#    print(data)
     data = data.replace('>>', '>')
     title = re.findall('《(.*)》', data)[0]
     content = '#阅读 #{} \n{}'.format(title, data)
